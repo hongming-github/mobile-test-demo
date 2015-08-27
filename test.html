@@ -32,12 +32,12 @@ body {
 
        var  startX, //触摸时的坐标
             startY,
-            x=0,      //存取滑动后位置的临时变量
+            x=0,      //存取偏移位置的临时变量
             y=0,
-            slideX, //滑动的距离
+            slideX,   //滑动的距离
             slideY,
             aboveX=0,
-            aboveY=0; //设一个全局变量记录上一次内部块滑动的位置 
+            aboveY=0; //记录上一次偏移的位置 
 
             /*window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
@@ -62,10 +62,10 @@ body {
                  slideX = touch.pageX - startX;//滑动的距离            
                  slideY = touch.pageY - startY;
 
-                 x = aboveX - slideX;
+                 x = aboveX - slideX; //相对于(0,0)的偏移量
                  y = aboveY - slideY;
-                 if(x >= 1248) x = 1248;
-                 if(y >= 768) y = 768;
+                 if(x >= 288) x = 288;//canvas与图片大小的最大偏移量
+                 if(y >= 192) y = 192;
                  if(x <= 0) x = 0;
                  if(y <= 0) y = 0;
                  
@@ -75,7 +75,7 @@ body {
 
             function touchEnd(e){//手指离开屏幕
                  e.preventDefault();      
-                 aboveX = x;     //touch结束后用来记录最后剪切的位置
+                 aboveX = x;     //touch结束后用来记录最后偏移的位置
                  aboveY = y;           
 
             } 
